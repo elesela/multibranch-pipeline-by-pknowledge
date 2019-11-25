@@ -3,18 +3,22 @@ pipeline {
     stages {
         stage('---clean---') {
             steps {
-                sh "mvn clean"
-            }
-        }
-        stage('--test--') {
-            steps {
-                sh "mvn test"
-            }
-        }
-        stage('--package--') {
-            steps {
-                sh "mvn package"
-            }
-        }
-    }
+               def mvn_version = 'M3'
+               withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+               sh "mvn clean package"
 }
+            }
+        }
+        }
+        //stage('--test--') {
+           // steps {
+              //  sh "mvn test"
+          //  }
+       // }
+       // stage('--package--') {
+          //  steps {
+            //    sh "mvn package"
+          //  }
+       // }
+  //  }
+//}
